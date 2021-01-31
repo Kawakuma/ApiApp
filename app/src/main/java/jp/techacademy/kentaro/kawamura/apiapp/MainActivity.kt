@@ -11,6 +11,8 @@ import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity(),FragmentCallback{  //AppCompatActivity()はコンテキストクラスを持っている。
 
+
+
     private val viewPagerAdapter by lazy { ViewPagerAdapter(this) } //ViewPagerAdapterを
        //遅らせて初期化しviewPagerAdapterにした。これはviewPager2の２０行目の右辺がが実行されたときに初期化される。
 

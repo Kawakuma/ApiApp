@@ -4,7 +4,7 @@ import io.realm.Realm
 import io.realm.RealmObject   //RealmObjectでデータ用のクラスを定義する
 import io.realm.annotations.PrimaryKey
 
-import com.google.gson.annotations.SerializedName
+
 import java.io.Serializable
 
 open class FavoriteShop: RealmObject(),Serializable {//Serializableでデータを送れるようにする
@@ -18,7 +18,7 @@ open class FavoriteShop: RealmObject(),Serializable {//Serializableでデータ�
     var address:String=""
 
     companion object {    //呼び出しメソッド（クラス名.メソッド名）で呼び出したいときcompanion objectを用いる。favoriteAdapter.refresh(FavoriteShop.findAll())の様に()内でクラス名.メソッド名にする。
-        fun findAll(): List<FavoriteShop> = // お気に入りのShopを全件取得
+        fun findAll():List<FavoriteShop> = // お気に入りのShopを全件取得
             Realm.getDefaultInstance().use { realm ->    //useで使う
                 realm.where(FavoriteShop::class.java)
                     .findAll().let {

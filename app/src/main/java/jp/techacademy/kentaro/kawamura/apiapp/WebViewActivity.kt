@@ -12,17 +12,19 @@ import java.net.URL
 import android.util.Log
 
 class WebViewActivity: AppCompatActivity(){
-
+//クーポンが開かれると　destroyが呼ばれる
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)//onCreateでactivity_web_view)を起動
 
         var shop:Shop?=intent.getSerializableExtra(KEY_SHOP) as Shop? //もしデータが入っていなかった時のことを考えてヌル許容型にしておく。?を使ってnull許容型とする。
+
         var favoshop:FavoriteShop?=intent.getSerializableExtra(KEY_FAVOSHOP) as FavoriteShop?//getSerializableExtraでデータをShop型として取る
+        //
 
         if (favoshop!=null){
-           webView.loadUrl(favoshop?.url.toString())
+           webView.loadUrl(favoshop?.url.toString())    //　
         }//２２行目で送ったurlをgetしてactivity_web_viewに表示させる。
         else { webView.loadUrl(if(shop!!.couponUrls.sp.isNotEmpty()){shop!!.couponUrls.sp} else {shop!!.couponUrls.pc})}
 
@@ -34,12 +36,15 @@ class WebViewActivity: AppCompatActivity(){
 
 
             setOnClickListener {
-                if (checkfavo?.id==shop?.id) {FavoriteShop.delete(favoshop?.id.toString()) //true(お気に入り)ならDeleteする
-              
+                if (checkfavo?.id==shop?.id) {
+
+                    FavoriteShop.delete(favoshop?.id.toString())
+                    FavoriteShop.delete(shop?.id.toString()) //ここが抜けていたために、新着順のdeleteが効かなかった！
                     setImageResource(R.drawable.ic_star_border)//画像も☆に切り替える
 
+                }
 
-                } else {
+                else {
                     FavoriteShop.insert(FavoriteShop().apply {
                     id = shop!!.id
                     name = shop.name

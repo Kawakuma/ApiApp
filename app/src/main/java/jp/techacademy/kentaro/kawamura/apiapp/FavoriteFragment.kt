@@ -23,6 +23,10 @@ class FavoriteFragment: Fragment() {
         }
     }
 
+    override fun onResume() {//フラグメントが再開されたとき更新する
+        super.onResume()
+        updateData()
+    }
 
     //↓このFragmentのメインとなるViewを生成し、返す必要があるときに呼び出される
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

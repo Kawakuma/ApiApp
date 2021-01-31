@@ -1,5 +1,6 @@
 package jp.techacademy.kentaro.kawamura.apiapp
 
+
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 //このクラスにAPI通信結果kotlin変換して格納する。

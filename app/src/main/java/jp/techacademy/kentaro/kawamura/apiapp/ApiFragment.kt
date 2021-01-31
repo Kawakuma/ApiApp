@@ -44,13 +44,16 @@ class ApiFragment: Fragment() {
         }
     }//というのもAppCompatActivity()はコンテキストクラスを持っていて、それをMainActivityは継承している。つまりMainActivityはContextとfragmentCallbackの２つを持っている。３８行目と同じことを言ってる。
 
-
-
-
-
+    override fun onResume() {//フラグメントが再開されたとき更新する
+        super.onResume()
+        updateView()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { // LayoutInflaterのｲﾝｽﾀﾝｽinflaterがすでに用意されている。
         return inflater.inflate(R.layout.fragment_api, container, false) //◆ fragment_api.xmlが反映されたViewを作成して、viewPager2へreturnする
+
+
+
     }//ホルダーをセットするfragment、つまりR.layout.fragment_apiを取り出し、第２引数のviewPagerに当てはめる。第３引数はApiAdapter35行目と同じ。
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  //onCreateViewで作ったレイアウトをここで表示させる
